@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Results – Project D House</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <header>
+    <a href="/">Project D House</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <a href="/" class="back-link">&larr; Back to Search</a>
+
+  {% if car %}
+
+    <h1>{{ car['brand'] }} {{ car['model'] }}</h1>
+
+    <div class="card">
+      <h2>Car Specs</h2>
+      <div class="spec-grid">
+        <div class="spec-item">
+          <small>Engine</small>
+          <strong>{{ car['engine'] }}</strong>
+        </div>
+        <div class="spec-item">
+          <small>Horsepower</small>
+          <strong>{{ car['horsepower'] }} hp</strong>
+        </div>
+        <div class="spec-item">
+          <small>Top Speed</small>
+          <strong>{{ car['top_speed'] }} km/h</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Available Tuning Services</h2>
+      {% if services %}
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Price (USD)</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for svc in services %}
+            <tr>
+              <td>{{ svc['service_name'] }}</td>
+              <td>${{ svc['price'] }}</td>
+              <td>
+                <a href="{{ url_for('booking', brand=car['brand'], model=car['model'], service=svc['service_name']) }}"
+                   class="btn btn-small">Book</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No services available.</p>
+      {% endif %}
+    </div>
+
+  {% else %}
+
+    <div class="not-found card">
+      <h2>Car Not Found</h2>
+      <p><strong>{{ searched_brand }} {{ searched_model }}</strong> is not in our database.</p>
+      <p>Check the spelling or try one of the cars listed on the homepage.</p>
+      <a href="/" class="btn">Try Again</a>
+    </div>
+
+  {% endif %}
+
+  <footer>
+    <p>&copy; 2025 Project D House. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

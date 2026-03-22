@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project D House</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <header>
+    <a href="/">Project D House</a>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <h1>Welcome to Project D House</h1>
+  <p>Enter your car details below to find available tuning services.</p>
+
+  <div class="card">
+    <form action="/search" method="POST">
+      <label for="brand">Car Brand</label>
+      <input type="text" id="brand" name="brand"
+             placeholder="e.g. Toyota, Nissan, Mazda" required autocomplete="off" />
+
+      <label for="model">Car Model</label>
+      <input type="text" id="model" name="model"
+             placeholder="e.g. AE86, GTR R34, RX-7" required autocomplete="off" />
+
+      <button type="submit">Find My Build</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <strong>Cars in the garage:</strong>
+    <p>Toyota AE86 · Nissan GTR R34 · Mazda RX-7 · Subaru Impreza WRX STI ·
+       Mitsubishi Lancer Evo IX · Honda Civic Type R · Toyota Supra MK4 · Nissan Silvia S15</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Project D House. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
